@@ -1,12 +1,18 @@
-body {
-    font-family: Arial, sans-serif;
+/* RESET GENERAL */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f8f9fa;
     color: #333;
 }
 
+/* BANNER RESPONSIVO */
 .banner {
     background-image: url('./images/banner.jpg');
     background-size: cover;
@@ -15,24 +21,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     text-align: center;
+    padding: 20px;
+    position: relative;
 }
 
 .banner-texto {
     background: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 10px;
+    color: white;
+    max-width: 90%;
 }
 
+/* SECCIONES */
 section {
     padding: 40px 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 h1, h2 {
     color: #005b8f;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
 }
 
 .servicios ul {
@@ -42,13 +57,21 @@ h1, h2 {
 
 .servicios li {
     padding: 5px 0;
+    font-size: 1rem;
 }
 
+/* LINKS */
 .contacto a {
     color: #005b8f;
     text-decoration: none;
+    font-weight: bold;
 }
 
+.contacto a:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -56,3 +79,48 @@ footer {
     font-size: 14px;
 }
 
+/* MEDIA QUERIES para móviles */
+@media (max-width: 768px) {
+    .banner {
+        height: 200px;
+        padding: 10px;
+    }
+
+    .banner-texto h1 {
+        font-size: 1.5rem;
+    }
+
+    .banner-texto p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 20px 10px;
+    }
+
+    .servicios li {
+        font-size: 0.95rem;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 160px;
+    }
+
+    .banner-texto {
+        padding: 10px;
+    }
+
+    .banner-texto h1 {
+        font-size: 1.2rem;
+    }
+
+    .banner-texto p {
+        font-size: 0.9rem;
+    }
+}
