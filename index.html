@@ -1,3 +1,4 @@
+// index.html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,55 +9,76 @@
 </head>
 <body>
 
-  <!-- Banner principal -->
-  <header class="banner">
-    <img src="banner.jpg" alt="Banner Psicomenteintegral">
-    <h1>Psicomenteintegral</h1>
-    <p>Atención Psicológica Profesional</p>
+  <!-- Banner con imagen Pintura.png -->
+  <header class="banner" id="banner">
+    <img src="images/Pintura.png" alt="Banner Psicomenteintegral" class="banner-img">
+    <!-- Logo persistente -->
+    <img src="images/LogoTransparente.png" alt="Logo" class="logo" id="logo">
   </header>
 
-  <!-- Presentación -->
-  <section class="presentacion">
-    <img src="danitzatransp.png" alt="Psicóloga" class="perfil">
-    <div>
-      <h2>Lic. Danitza Pérez</h2>
-      <p>Psicóloga especializada en atención a jóvenes y adultos. Terapias personalizadas, enfoque integrativo, sesiones presenciales y online.</p>
+  <!-- Sección Mi trayectoria -->
+  <section class="trayectoria" id="trayectoria">
+    <div class="marco-container">
+      <img src="images/marco.png" alt="Marco" class="marco">
+      <img src="images/danitzatransp.png" alt="Psicóloga" class="perfil" id="perfil">
+    </div>
+    <div class="texto-trayectoria">
+      <h2>Mi trayectoria</h2>
+      <p>Texto sobre la trayectoria de la psicóloga...</p>
+      <img src="images/orden.png" alt="Fondo orden" class="fondo-orden" id="orden">
     </div>
   </section>
 
-  <!-- Servicios -->
-  <section class="servicios">
-    <h2>Especialidades</h2>
-    <ul>
-      <li>Ansiedad y Estrés</li>
-      <li>Depresión</li>
-      <li>Orientación Vocacional</li>
-      <li>Terapia de Pareja</li>
-      <li>Autoestima y Desarrollo Personal</li>
-    </ul>
+  <!-- Pestañas de servicios -->
+  <section class="servicios" id="servicios">
+    <h2>Servicios</h2>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="apoyo">Apoyo psicológico</button>
+      <button class="tab-button" data-tab="formativa">Terapia formativa</button>
+      <button class="tab-button" data-tab="adultos">Adultos</button>
+      <button class="tab-button" data-tab="ninos">Niños</button>
+      <button class="tab-button" data-tab="adolescentes">Adolescentes</button>
+      <button class="tab-button" data-tab="parejas">Terapia de parejas</button>
+    </div>
+    <!-- Contenidos de pestañas -->
+    <div class="tab-content active" id="apoyo">
+      <h3>Apoyo psicológico</h3>
+      <p>Descripción del apoyo psicológico.</p>
+      <p>Duración: 1 hora</p>
+      <p>Valor: $30.000 CLP</p>
+    </div>
+    <div class="tab-content" id="formativa">
+      <h3>Terapia formativa</h3>
+      <p>Descripción de la terapia formativa.</p>
+      <p>Duración: 1.5 horas</p>
+      <p>Valor: $45.000 CLP</p>
+    </div>
+    <div class="tab-content" id="adultos">
+      <h3>Adultos</h3>
+      <p>Servicio para adultos.</p>
+      <p>Duración: 1 hora</p>
+      <p>Valor: $30.000 CLP</p>
+    </div>
+    <div class="tab-content" id="ninos">
+      <h3>Niños</h3>
+      <p>Servicio para niños.</p>
+      <p>Duración: 45 minutos</p>
+      <p>Valor: $25.000 CLP</p>
+    </div>
+    <div class="tab-content" id="adolescentes">
+      <h3>Adolescentes</h3>
+      <p>Servicio para adolescentes.</p>
+      <p>Duración: 1 hora</p>
+      <p>Valor: $30.000 CLP</p>
+    </div>
+    <div class="tab-content" id="parejas">
+      <h3>Terapia de parejas</h3>
+      <p>Servicio de terapia de parejas.</p>
+      <p>Duración: 1.5 horas</p>
+      <p>Valor: $50.000 CLP</p>
+    </div>
   </section>
 
-  <!-- Imagen ilustrativa -->
-  <section class="ilustracion">
-    <img src="orden.png" alt="Terapia psicológica">
-  </section>
-
-  <!-- Formulario de contacto -->
-  <section class="contacto">
-    <h2>Contáctame</h2>
-    <form action="mailto:tu-email@ejemplo.com" method="post" enctype="text/plain">
-      <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <input type="email" name="correo" placeholder="Tu correo" required>
-      <textarea name="mensaje" rows="5" placeholder="Tu mensaje..." required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <img src="SymbolPsicologia.png" alt="Símbolo Psicología">
-    <p>&copy; 2025 Psicomenteintegral - Todos los derechos reservados</p>
-  </footer>
-
+  <script src="script.js"></script>
 </body>
 </html>

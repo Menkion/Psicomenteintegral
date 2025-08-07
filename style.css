@@ -1,45 +1,32 @@
+/* style.css */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
   background: #f9f9f9;
   color: #333;
 }
-
 .banner {
   position: relative;
-  text-align: center;
-  color: white;
+  overflow: hidden;
 }
-
-.banner img {
+.banner-img {
   width: 100%;
-  height: auto;
-  opacity: 0.5;
+  display: block;
 }
-
-.banner h1 {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
+.logo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 1000;
 }
-
-.banner p {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-}
-
-.presentacion {
+.trayectoria {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -47,76 +34,83 @@ body {
   padding: 2rem;
   background: #fff;
 }
-
-.presentacion img.perfil {
-  width: 200px;
+.marco-container {
+  position: relative;
+  width: 250px;
   margin: 1rem;
 }
-
-.presentacion div {
-  max-width: 500px;
+.marco {
+  width: 100%;
+}
+.perfil {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.texto-trayectoria {
+  position: relative;
+  max-width: 600px;
   padding: 1rem;
 }
-
+.fondo-orden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s;
+  z-index: -1;
+}
 .servicios {
   background: #e6f0f3;
   padding: 2rem;
   text-align: center;
 }
-
-.servicios ul {
-  list-style: none;
-  padding: 1rem;
-}
-
-.servicios li {
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-}
-
-.ilustracion img {
-  width: 100%;
-  height: auto;
-}
-
-.contacto {
-  background: #fff;
-  padding: 2rem;
-  text-align: center;
-}
-
-.contacto form {
-  max-width: 600px;
-  margin: 0 auto;
+.tabs {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contacto input,
-.contacto textarea {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.contacto button {
-  background-color: #008080;
-  color: white;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1.5rem;
-}
-
-footer img {
-  width: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 1rem;
+}
+.tab-button {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.tab-button.active {
+  background: #008080;
+  color: #fff;
+  border-color: #008080;
+}
+.tab-content {
+  display: none;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tab-content.active {
+  display: block;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+}
+@media (max-width: 768px) {
+  .trayectoria {
+    flex-direction: column;
+  }
+  .marco-container,
+  .texto-trayectoria {
+    width: 90%;
+  }
 }
