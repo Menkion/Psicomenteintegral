@@ -1,3 +1,4 @@
+// script.js
 const banner = document.getElementById('banner');
 const logo = document.getElementById('logo');
 const perfil = document.getElementById('perfil');
@@ -7,11 +8,20 @@ const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
 
 window.addEventListener('scroll', () => {
-  // Sticky banner
-  if (window.scrollY > banner.offsetHeight * 0.8) {
-    banner.classList.add('sticky');
+  // Banner static at 20%
+  if (window.scrollY > banner.offsetHeight * 0.2) {
+    banner.classList.add('static-bg');
   } else {
-    banner.classList.remove('sticky');
+    banner.classList.remove('static-bg');
+  }
+
+  // Logo shrink
+  if (window.scrollY > 50) {
+    logo.classList.add('shrunk');
+    logo.classList.remove('default');
+  } else {
+    logo.classList.add('default');
+    logo.classList.remove('shrunk');
   }
 
   // Aparecer perfil y orden
@@ -27,11 +37,7 @@ window.addEventListener('scroll', () => {
 });
 
 logo.addEventListener('click', () => {
-  if (window.location.pathname.endsWith('/Psicomenteintegral/') || window.location.pathname.endsWith('/Psicomenteintegral/index.html')) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    window.location.href = window.location.origin + '/Psicomenteintegral/';
-  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 tabButtons.forEach(btn => {
