@@ -1,4 +1,3 @@
-// script.js
 const banner = document.getElementById('banner');
 const logo = document.getElementById('logo');
 const perfil = document.getElementById('perfil');
