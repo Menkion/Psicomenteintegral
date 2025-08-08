@@ -28,16 +28,19 @@ body {
   z-index: -1;
 }
 
-/* Logo */
-.logo {
-  position: absolute;
+#logo {
+  position: fixed;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
   z-index: 1000;
-  width: 400px;
-  cursor: pointer;
+  height: 400px;
+}
+.logo-scrolled {
+  top: 20px;
+  left: 20px;
+  transform: translate(0, 0) scale(0.3);
 }
 .logo.shrunk {
   position: fixed;
@@ -45,8 +48,10 @@ body {
   left: 20px;
   transform: translate(0, 0) scale(0.5);
 }
+.fade-in {
+  opacity: 1;
+}
 
-/* Sección trayectoria */
 .trayectoria {
   display: flex;
   flex-wrap: wrap;
@@ -76,14 +81,10 @@ body {
   max-width: 600px;
   padding: 1rem;
 }
+.perfil,
 .fondo-orden {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   opacity: 0;
-  transition: opacity 0.6s;
-  z-index: -1;
+  transition: opacity 1s ease-in-out;
 }
 
 /* Servicios */

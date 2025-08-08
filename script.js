@@ -1,54 +1,45 @@
-const banner = document.getElementById("static-banner");
+// --- Referencias ---
 const logo = document.getElementById("logo");
-const perfil = document.getElementById('perfil');
-const orden = document.getElementById('orden');
-const trayectoria = document.getElementById('trayectoria');
-const tabButtons = document.querySelectorAll('.tab-button');
-const tabContents = document.querySelectorAll('.tab-content');
+const perfil = document.getElementById("perfil");
+const orden = document.getElementById("orden");
 
-// LÓGICA SCROLL
+// --- Evento de scroll ---
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
-  const bannerHeight = banner.offsetHeight;
 
-  // Banner scroll
-  if (scrollY >= bannerHeight * 0.2) {
-    document.body.classList.add("scrolled-banner");
+  // --- Logo se achica y se mueve ---
+  if (scrollY > 100) {
+    logo.classList.add("logo-scrolled");
   } else {
-    document.body.classList.remove("scrolled-banner");
+    logo.classList.remove("logo-scrolled");
   }
 
-  // Logo shrink
-  if (scrollY > 50) {
-    document.body.classList.add("scrolled-logo");
-  } else {
-    document.body.classList.remove("scrolled-logo");
+  // --- Mostrar imagen de perfil ---
+  if (perfil) {
+    const perfilTop = perfil.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (perfilTop < windowHeight * 0.8) {
+      perfil.classList.add("fade-in");
+    } else {
+      perfil.classList.remove("fade-in");
+    }
   }
 
-  // Aparecer perfil y orden
-  const trayTop = trayectoria.getBoundingClientRect().top;
-  const winHeight = window.innerHeight;
+  // --- Mostrar imagen de fondo orden ---
+  if (orden) {
+    const ordenTop = orden.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
 
-  if (trayTop < winHeight && trayTop > 0) {
-    perfil.style.opacity = '1';
-    orden.style.opacity = '1';
-  } else {
-    perfil.style.opacity = '0';
-    orden.style.opacity = '0';
+    if (ordenTop < windowHeight * 0.8) {
+      orden.classList.add("fade-in");
+    } else {
+      orden.classList.remove("fade-in");
+    }
   }
 });
 
-// Ir arriba al hacer clic en el logo
-logo.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Tabs
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    tabContents.forEach(c => c.classList.remove('active'));
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
+// --- Logo clicable para volver arriba ---
+logo.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
