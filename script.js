@@ -1,32 +1,34 @@
-// script.js
-const banner = document.getElementById('banner');
-const logo = document.getElementById('logo');
+const banner = document.getElementById("static-banner");
+const logo = document.getElementById("logo");
 const perfil = document.getElementById('perfil');
 const orden = document.getElementById('orden');
 const trayectoria = document.getElementById('trayectoria');
 const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
 
-window.addEventListener('scroll', () => {
-  // Banner static at 20%
-  if (window.scrollY > banner.offsetHeight * 0.2) {
-    banner.classList.add('static-bg');
+// LÓGICA SCROLL
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const bannerHeight = banner.offsetHeight;
+
+  // Banner scroll
+  if (scrollY >= bannerHeight * 0.2) {
+    document.body.classList.add("scrolled-banner");
   } else {
-    banner.classList.remove('static-bg');
+    document.body.classList.remove("scrolled-banner");
   }
 
   // Logo shrink
-  if (window.scrollY > 50) {
-    logo.classList.add('shrunk');
-    logo.classList.remove('default');
+  if (scrollY > 50) {
+    document.body.classList.add("scrolled-logo");
   } else {
-    logo.classList.add('default');
-    logo.classList.remove('shrunk');
+    document.body.classList.remove("scrolled-logo");
   }
 
   // Aparecer perfil y orden
   const trayTop = trayectoria.getBoundingClientRect().top;
   const winHeight = window.innerHeight;
+
   if (trayTop < winHeight && trayTop > 0) {
     perfil.style.opacity = '1';
     orden.style.opacity = '1';
@@ -36,10 +38,12 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Ir arriba al hacer clic en el logo
 logo.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Tabs
 tabButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     tabButtons.forEach(b => b.classList.remove('active'));
