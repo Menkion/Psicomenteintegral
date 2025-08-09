@@ -11,31 +11,66 @@ body {
 }
 
 /* Banner */
-.banner {
+#banner {
   position: relative;
-  height: auto;
-  overflow: hidden;
-}
-.banner-img {
   width: 100%;
-  display: block;
-  transition: transform 0.3s ease;
+  height: 400px; /* ajusta si quieres otra altura */
+  overflow: hidden;
+  z-index: 50;
+  transition: none; /* no animamos height del banner en sí */
 }
-.banner.static-bg .banner-img {
+/* Cuando el banner está 'anclado' */
+#banner.docked {
   position: fixed;
-  top: 0;
   left: 0;
-  z-index: -1;
+  width: 100%;
+  z-index: 60;
+  /* top se setea desde JS dinámicamente: top = -(bannerHeight - visibleHeight)px */
+}
+#banner-buttons {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  text-align: center;
 }
 
+#banner-buttons button {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* imagen del banner */
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Spacer que evita saltos - animación suave */
+#banner-spacer {
+  height: 0px;
+  transition: height 300ms ease;
+}
 #logo {
-  position: fixed;
-  top: 20%;
+  position: absolute; /* Sobre el banner */
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: all 0.5s ease-in-out;
-  z-index: 1000;
-  height: 400px;
+  transform: translateX(-50%);
+  width: 400px; /* tamaño inicial */
+  transition: all 300ms ease;
+  z-index: 70;
+}
+#logo.small {
+  position: fixed; /* se queda en pantalla */
+  top: 10px;
+  left: 20px;
+  transform: none; /* elimina el centrado */
+  width: 150px; /* tamaño reducido */
 }
 .logo-scrolled {
   top: 20px;
@@ -74,7 +109,7 @@ body {
   left: 20px;
   width: calc(100% - 40px);
   opacity: 0;
-  transition: opacity 0.6s;
+  transition: opacity 700ms ease;
 }
 .texto-trayectoria {
   position: relative;
@@ -83,7 +118,7 @@ body {
 }
 .perfil,
 .fondo-orden {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 1s ease-in-out;
 }
 
