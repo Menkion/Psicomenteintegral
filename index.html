@@ -1,50 +1,107 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Psicomenteintegral</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/LogoCerebroTransparente.PNG">
 </head>
 <body>
 
-  <!-- Banner con imagen Pintura.png -->
+  <!-- HEADER: imagen + logo -->
   <header class="banner" id="banner">
-    <img src="images/Pintura.png" alt="Banner Psicomenteintegral" class="banner-img">
-    <img src="images/LogoTransparente.png" alt="Logo" class="logo default" id="logo">
-  </header>
-<div id="banner-spacer"></div>
-  <!-- Sección Mi trayectoria -->
-  <section class="trayectoria" id="trayectoria">
-    <div class="marco-container">
-      <img src="images/marco.png" alt="Marco" class="marco">
-      <img src="images/danitzatransp.png" alt="Psicóloga" class="perfil" id="perfil">
+    <div class="banner-img-container">
+      <img src="images/Pintura.png" alt="Banner Psicomenteintegral" class="banner-img">
+      <img src="images/LogoTransparente.png" alt="Logo Psicomenteintegral" id="logo">
     </div>
-    <div class="texto-trayectoria">
-      <h2>Mi trayectoria</h2>
-      <p>Texto sobre la trayectoria de la psicóloga...</p>
+  </header>
+
+  <!-- BARRA DE BOTONES: será sticky y quedará arriba al scrollear -->
+  <nav id="banner-buttons" aria-label="Navegación principal">
+    <button data-target="trayectoria">Mi trayectoria</button>
+    <button data-target="servicios">Servicios</button>
+    <button data-target="contacto">Contacto</button>
+    <button data-target="horarios">Horarios</button>
+  </nav>
+
+  <main>
+    <!-- Sección Mi trayectoria -->
+    <section id="mi-trayectoria">
+  <div class="trayectoria-container">
+    <!-- Columna izquierda -->
+    <div class="col izquierda">
+      <div class="marco-container">
+        <img src="images/marco.png" alt="Marco" class="marco">
+        <img src="images/danitzatransp.png" alt="Psicóloga" class="perfil" id="perfil">
+      </div>
+      
+      <div class="trayectoria" id="trayectoria">
+        <h2>Mi trayectoria</h2>
+        <p>
+        Desde muy joven, descubrí mi pasión por comprender el funcionamiento de la mente
+        humana y ayudar a las personas a encontrar equilibrio y bienestar emocional.
+        Comencé estudiando neurociencia aplicada, complementándola con técnicas de
+        desarrollo personal y comunicación efectiva.  
+      </p>
+      <p>
+        A lo largo de los años, he trabajado con diversos grupos y comunidades,
+        adaptando mis métodos a las necesidades de cada persona. Mi enfoque integra
+        herramientas científicas y humanistas para ofrecer un acompañamiento integral
+        y personalizado.  
+      </p>
+      <p>
+        Hoy en día, continúo formándome y explorando nuevas técnicas, con el firme
+        propósito de ayudar a quienes buscan mejorar su calidad de vida y alcanzar
+        sus metas personales y profesionales.
+      </p>
+      </div>
+    <div class="col derecha">
       <img src="images/orden.png" alt="Fondo orden" class="fondo-orden" id="orden">
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Pestañas de servicios -->
-  <section class="servicios" id="servicios">
-    <h2>Servicios</h2>
-    <div class="tabs">
-      <button class="tab-button active" data-tab="apoyo">Apoyo psicológico</button>
-      <button class="tab-button" data-tab="formativa">Terapia formativa</button>
-      <button class="tab-button" data-tab="adultos">Adultos</button>
-      <button class="tab-button" data-tab="ninos">Niños</button>
-      <button class="tab-button" data-tab="adolescentes">Adolescentes</button>
-      <button class="tab-button" data-tab="parejas">Terapia de parejas</button>
-    </div>
-    <div class="tab-content active" id="apoyo">
-      <h3>Apoyo psicológico</h3>
-      <p>Descripción del apoyo psicológico.</p>
-      <p>Duración: 1 hora</p>
-      <p>Valor: $30.000 CLP</p>
-    </div>
-    <!-- Resto de tab-content igual que antes -->
-  </section>
+    <!-- Servicios -->
+    <section class="servicios" id="servicios">
+      <h2>Servicios</h2>
+      <div class="tabs">
+        <button class="tab-button" data-tab="apoyo">Apoyo psicológico</button>
+        <button class="tab-button" data-tab="formativa">Terapia formativa</button>
+        <button class="tab-button" data-tab="adultos">Adultos</button>
+        <button class="tab-button" data-tab="ninos">Niños</button>
+        <button class="tab-button" data-tab="adolescentes">Adolescentes</button>
+        <button class="tab-button" data-tab="parejas">Terapia de parejas</button>
+      </div>
+
+      <div class="tab-content active" id="apoyo">
+        <h3>Apoyo psicológico</h3>
+        <p>Descripción del apoyo psicológico.</p>
+        <p>Duración: 1 hora</p>
+        <p>Valor: $30.000 CLP</p>
+      </div>
+      <div class="tab-content active" id="formativa">
+        <h3>Terapia Formativa</h3>
+        <p>Descripción del apoyo psicológico.</p>
+        <p>Duración: 1 hora</p>
+        <p>Valor: $30.000 CLP</p>
+      </div>
+      
+      <!-- puedes añadir el resto de las tab-content aquí -->
+    </section>
+
+    <!-- Contacto / Horarios (ejemplo de anclas destino) -->
+    <section id="contacto" style="padding:2rem; background:#fff;">
+      <h2>Contacto</h2>
+      <p>Correo y WhatsApp</p>
+    </section>
+
+    <section id="horarios" style="padding:2rem; background:#f4f4f4;">
+      <h2>Horarios</h2>
+      <p>Horario de atención</p>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>

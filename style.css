@@ -1,177 +1,229 @@
-/* Reset básico */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
 body {
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  background: #ffffff;
   color: #333;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+:root {
+  --banner-button-overlap: clamp(48px, 6vh, 80px);
+}
+/* BANNER (imagen + logo) */
+.banner {
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
 }
 
-/* Banner */
-#banner {
+/* Contenedor de la imagen: ocupa una altura proporcional */
+.banner-img-container {
   position: relative;
   width: 100%;
-  height: 400px; /* ajusta si quieres otra altura */
+  height: clamp(220px, 40vh, 420px); /* responsivo: min 220px, ideal 40vh, max 420px */
   overflow: hidden;
-  z-index: 50;
-  transition: none; /* no animamos height del banner en sí */
-}
-/* Cuando el banner está 'anclado' */
-#banner.docked {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  z-index: 60;
-  /* top se setea desde JS dinámicamente: top = -(bannerHeight - visibleHeight)px */
-}
-#banner-buttons {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px;
-  text-align: center;
 }
 
-#banner-buttons button {
-  background: transparent;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  font-size: 16px;
-  cursor: pointer;
-}
-/* imagen del banner */
+/* Imagen del banner (rellena el contenedor) */
 .banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 400ms ease;
 }
-/* Spacer que evita saltos - animación suave */
-#banner-spacer {
-  height: 0px;
-  transition: height 300ms ease;
-}
+
+/* Logo: inicialmente sobre el banner */
 #logo {
-  position: absolute; /* Sobre el banner */
-  top: 20px;
+  position: absolute;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px; /* tamaño inicial */
-  transition: all 300ms ease;
-  z-index: 70;
+  width: clamp(120px, 18vw, 260px);
+  max-width: 320px;
+  transition: all 320ms ease;
+  z-index: 10;
+  pointer-events: auto;
 }
+
+/* Logo reducido: se fija en la esquina superior izquierda */
 #logo.small {
-  position: fixed; /* se queda en pantalla */
-  top: 10px;
-  left: 20px;
-  transform: none; /* elimina el centrado */
-  width: 150px; /* tamaño reducido */
-}
-.logo-scrolled {
-  top: 20px;
-  left: 20px;
-  transform: translate(0, 0) scale(0.3);
-}
-.logo.shrunk {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  transform: translate(0, 0) scale(0.5);
+  top: 10px;
+  left: 12px;
+  transform: none;
+  width: clamp(56px, 8vw, 140px);
+  z-index: 99999;
 }
-.fade-in {
-  opacity: 1;
+
+/* NAV inicialmente superpuesto sobre la parte inferior del banner */
+#banner-buttons {
+  margin-top: calc(-1 * var(--banner-button-overlap));
+  position: relative;      /* en flujo normal hasta que JS la fije */
+  z-index: 999; 
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px 12px;
+  background: rgba(0, 0, 0, 0); 
+}
+/* cuando JS fija la nav */
+#banner-buttons.fixed {
+  position: fixed !important;
+  left: 0 !important;
+  width: 100% !important;
+  box-shadow: 0 2px 12px rgba(121, 48, 180, 0.185);
+  backdrop-filter: blur(0px);
+}
+/* banner visible sólo la franja inferior cuando está 'anchored' (JS aplica inline top) */
+#banner.anchored {
+  pointer-events: none; /* evita que capture eventos (la nav está encima) */
+  box-shadow: 0 -6px 18px rgba(0,0,0,0.12);
+}
+/* el spacer reservado para evitar saltos (script manipula height) */
+#banner-spacer {
+  height: 0;
+  transition: height 280ms ease;
+}
+
+/* Estilo botones */
+#banner-buttons button {
+  background: transparent;
+  color: rgba(132, 87, 255, 0.95);
+  border: none;
+  padding: 8px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+#banner-buttons button:hover { background: rgba(132,87,255,0.06); }
+
+/* MAIN: dejar espacio natural para banner + botonera
+   No fijamos header; el espacio se administra con padding-top que depende
+   de la altura real del banner + altura del banner-buttons.
+   Para ser robustos, damos un valor conservador; está bien ajustarlo. */
+main {
+  padding-top: calc(clamp(220px, 40vh, 420px) + 56px); /* banner height + approx botonera */
+  min-height: 60vh;
+}
+
+/* Trayectoria y demás */
+.trayectoria-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* centra todo horizontalmente */
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+/* Columnas izquierda y derecha */
+.col.izquierda, .col.derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Marco y perfil dentro de la columna izquierda */
+.marco-container {
+  position: relative;
+  width: 220px;        /* ancho base, ajustable */
+  max-width: 25vw;     /* responsivo */
+}
+
+.marco {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: auto;
+  z-index: 2;
+}
+/* Imagen orden (columna derecha) */
+.fondo-orden {
+  width: 180px;        /* tamaño editable */
+  max-width: 20vw;     /* adaptativo */
+  height: auto;
+}
+
+.perfil {
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  position: relative;
 }
 
 .trayectoria {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  background: #fff;
+  flex: 1;
+  max-width: 600px;        /* ancho editable */
+  text-align: center;       /* centrado */
+  padding: 0 10px;
 }
-.marco-container {
-  position: relative;
-  width: 250px;
-  margin: 1rem;
+
+.trayectoria h2 {
+  margin-bottom: 16px;
 }
-.marco {
-  width: 100%;
+
+.trayectoria p {
+  margin-bottom: 14px;
+  line-height: 1.6;
 }
+
+.trayectoria-imagen {
+  max-width: 200px;
+}
+
+.marco-container { position: relative; width: 250px; margin: 1rem; }
+.marco { width:100%; }
 .perfil {
   position: absolute;
   top: 20px;
   left: 20px;
   width: calc(100% - 40px);
   opacity: 0;
-  transition: opacity 700ms ease;
+  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(10px);
 }
-.texto-trayectoria {
-  position: relative;
-  max-width: 600px;
-  padding: 1rem;
-}
-.perfil,
-.fondo-orden {
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
-}
+.perfil.fade-in { opacity:1; transform: translateY(0); }
 
-/* Servicios */
-.servicios {
-  background: #e6f0f3;
-  padding: 2rem;
-  text-align: center;
-}
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-.tab-button {
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.tab-button.active {
-  background: #008080;
-  color: #fff;
-  border-color: #008080;
-}
-.tab-content {
-  display: none;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 5px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.tab-content.active {
-  display: block;
-}
+.texto-trayectoria { max-width:600px; padding:1rem; }
+.fondo-orden { opacity: 0; transition: opacity 700ms ease; }
+.fondo-orden.fade-in { opacity: 1; }
+
+/* Servicios (tabs) */
+.servicios { background: #e6f0f3; padding: 2rem; text-align: center; }
+.tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:1rem; }
+.tab-button { background:#fff; border:1px solid #ccc; padding:10px 15px; cursor:pointer; border-radius:6px; }
+.tab-button.active { background: transparent; color: rgba(132,87,255,0.95); border-color: rgba(132,87,255,0.12); }
+.tab-content { display:none; background:#fff; padding:1rem; border-radius:6px; max-width:800px; margin:0 auto; }
+.tab-content.active { display:block; }
+
+/* Contacto/horarios sample sections */
+#contacto, #horarios { padding:2rem; }
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .trayectoria {
-    flex-direction: column;
-  }
-  .marco-container,
-  .texto-trayectoria {
-    width: 90%;
-  }
-  .logo {
-    width: 200px;
-  }
-  .logo.shrunk {
-    transform: translate(0, 0) scale(0.6);
-  }
+  #banner-buttons button { font-size: 16px; padding: 8px 10px; }
+  main { padding-top: calc(clamp(180px, 34vh, 340px) + 56px); }
+  #logo { width: clamp(90px, 28vw, 180px); }
+  #logo.small { width: 72px; left: 10px; top: 8px; }
 }
+  .trayectoria-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .marco-container {
+    width: 50%;
+    max-width: 180px;
+  }
+  .fondo-orden {
+    width: 120px;
+    max-width: 35vw;
+  }
+  .trayectoria {
+    max-width: 90%;
+    padding: 0 5px;
+  }
