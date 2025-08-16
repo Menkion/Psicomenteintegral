@@ -1,31 +1,34 @@
-/* Reset */
+/* RESET */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html,body { height: 100%; }
+html, body { height: 100%; }
 body {
   font-family: Arial, sans-serif;
   background: #ffffff;
   color: #333;
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 :root {
   --banner-button-overlap: clamp(48px, 6vh, 80px);
 }
+
+/* ------------------ */
 /* BANNER (imagen + logo) */
+/* ------------------ */
 .banner {
   width: 100%;
   background: transparent;
   overflow: hidden;
 }
 
-/* Contenedor de la imagen: ocupa una altura proporcional */
 .banner-img-container {
   position: relative;
   width: 100%;
-  height: clamp(220px, 40vh, 420px); /* responsivo: min 220px, ideal 40vh, max 420px */
+  height: clamp(220px, 40vh, 420px);
   overflow: hidden;
 }
 
-/* Imagen del banner (rellena el contenedor) */
 .banner-img {
   width: 100%;
   height: 100%;
@@ -34,7 +37,6 @@ body {
   transition: transform 400ms ease;
 }
 
-/* Logo: inicialmente sobre el banner */
 #logo {
   position: absolute;
   top: 14px;
@@ -47,7 +49,6 @@ body {
   pointer-events: auto;
 }
 
-/* Logo reducido: se fija en la esquina superior izquierda */
 #logo.small {
   position: fixed;
   top: 10px;
@@ -57,18 +58,16 @@ body {
   z-index: 99999;
 }
 
-/* NAV inicialmente superpuesto sobre la parte inferior del banner */
 #banner-buttons {
   margin-top: calc(-1 * var(--banner-button-overlap));
-  position: relative;      /* en flujo normal hasta que JS la fije */
+  position: relative;
   z-index: 999; 
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:10px 12px;
-  background: rgba(0, 0, 0, 0); 
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0);
 }
-/* cuando JS fija la nav */
 #banner-buttons.fixed {
   position: fixed !important;
   left: 0 !important;
@@ -76,18 +75,16 @@ body {
   box-shadow: 0 2px 12px rgba(121, 48, 180, 0.185);
   backdrop-filter: blur(0px);
 }
-/* banner visible sólo la franja inferior cuando está 'anchored' (JS aplica inline top) */
 #banner.anchored {
-  pointer-events: none; /* evita que capture eventos (la nav está encima) */
+  pointer-events: none;
   box-shadow: 0 -6px 18px rgba(0,0,0,0.12);
 }
-/* el spacer reservado para evitar saltos (script manipula height) */
 #banner-spacer {
   height: 0;
   transition: height 280ms ease;
 }
 
-/* Estilo botones */
+/* Botones */
 #banner-buttons button {
   background: transparent;
   color: rgba(132, 87, 255, 0.95);
@@ -97,123 +94,162 @@ body {
   cursor: pointer;
   border-radius: 8px;
 }
-#banner-buttons button:hover { background: rgba(132,87,255,0.06); }
+#banner-buttons button:hover {
+  background: rgba(132,87,255,0.06);
+}
 
-/* MAIN: dejar espacio natural para banner + botonera
-   No fijamos header; el espacio se administra con padding-top que depende
-   de la altura real del banner + altura del banner-buttons.
-   Para ser robustos, damos un valor conservador; está bien ajustarlo. */
+/* MAIN */
 main {
-  padding-top: calc(clamp(220px, 40vh, 420px) + 56px); /* banner height + approx botonera */
+  padding-top: calc(clamp(220px, 40vh, 420px) + 56px);
   min-height: 60vh;
 }
 
-/* Trayectoria y demás */
+/* ------------------ */
+/* MI TRAYECTORIA */
+/* ------------------ */
 .trayectoria-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;   /* centra todo horizontalmente */
   align-items: flex-start;
+  justify-content: center;
   gap: 20px;
-  padding: 40px 20px;
+  margin-top: 40px;
 }
 
-/* Columnas izquierda y derecha */
-.col.izquierda, .col.derecha {
+/* Columnas */
+.trayectoria-container .col {
+  padding: 10px;
+}
+.trayectoria-container .izquierda {
+  flex: 0 0 20%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
 }
 
-/* Marco y perfil dentro de la columna izquierda */
+.trayectoria-container .centro {
+  flex: 0 0 60%;
+  text-align: center;
+}
+.trayectoria-container .derecha {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Marco y perfil */
 .marco-container {
   position: relative;
-  width: 220px;        /* ancho base, ajustable */
-  max-width: 25vw;     /* responsivo */
+  width: 100%;
+  max-width: 280px;
 }
-
 .marco {
-  position: absolute;
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: auto;
-  z-index: 2;
-}
-/* Imagen orden (columna derecha) */
-.fondo-orden {
-  width: 180px;        /* tamaño editable */
-  max-width: 20vw;     /* adaptativo */
-  height: auto;
-}
-
-.perfil {
-  display: block;
   width: 100%;
   height: auto;
-  z-index: 1;
-  position: relative;
+  display: block;
+}
+.perfil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%; /* editable */
+  height: auto;
+  transition: opacity 700ms ease, transform 700ms ease;
+  opacity: 1;
 }
 
+/* Texto */
 .trayectoria {
-  flex: 1;
-  max-width: 600px;        /* ancho editable */
-  text-align: center;       /* centrado */
-  padding: 0 10px;
+  max-width: 600px; /* editable */
+  text-align: center;
+  margin: 0 auto;
 }
-
 .trayectoria h2 {
   margin-bottom: 16px;
 }
-
 .trayectoria p {
   margin-bottom: 14px;
   line-height: 1.6;
 }
 
-.trayectoria-imagen {
-  max-width: 200px;
+/* Imagen orden */
+.fondo-orden {
+  width: 180px;
+  max-width: 20vw;
+  height: auto;
 }
 
-.marco-container { position: relative; width: 250px; margin: 1rem; }
-.marco { width:100%; }
-.perfil {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: calc(100% - 40px);
-  opacity: 0;
-  transition: opacity 700ms ease, transform 700ms ease;
-  transform: translateY(10px);
+/* ------------------ */
+/* SERVICIOS (tabs) */
+/* ------------------ */
+.servicios {
+  background: #e6f0f3;
+  padding: 2rem;
+  text-align: center;
 }
-.perfil.fade-in { opacity:1; transform: translateY(0); }
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.tab-button {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.tab-button.active {
+  background: transparent;
+  color: rgba(132,87,255,0.95);
+  border-color: rgba(132,87,255,0.12);
+}
+.tab-content {
+  display: none;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tab-content.active { display: block; }
 
-.texto-trayectoria { max-width:600px; padding:1rem; }
-.fondo-orden { opacity: 0; transition: opacity 700ms ease; }
-.fondo-orden.fade-in { opacity: 1; }
+/* Contacto/Horarios */
+#contacto, #horarios {
+  padding: 2rem;
+}
 
-/* Servicios (tabs) */
-.servicios { background: #e6f0f3; padding: 2rem; text-align: center; }
-.tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:1rem; }
-.tab-button { background:#fff; border:1px solid #ccc; padding:10px 15px; cursor:pointer; border-radius:6px; }
-.tab-button.active { background: transparent; color: rgba(132,87,255,0.95); border-color: rgba(132,87,255,0.12); }
-.tab-content { display:none; background:#fff; padding:1rem; border-radius:6px; max-width:800px; margin:0 auto; }
-.tab-content.active { display:block; }
+/* ------------------ */
+/* RESPONSIVE */
+/* ------------------ */
+@media (max-width: 1024px) {
+  .marco { width: 260px; }
+  .perfil { width: 200px; }
+}
 
-/* Contacto/horarios sample sections */
-#contacto, #horarios { padding:2rem; }
-
-/* Responsivo */
 @media (max-width: 768px) {
-  #banner-buttons button { font-size: 16px; padding: 8px 10px; }
-  main { padding-top: calc(clamp(180px, 34vh, 340px) + 56px); }
+  #banner-buttons button {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  main {
+    padding-top: calc(clamp(180px, 34vh, 340px) + 56px);
+  }
   #logo { width: clamp(90px, 28vw, 180px); }
   #logo.small { width: 72px; left: 10px; top: 8px; }
-}
+
   .trayectoria-container {
     flex-direction: column;
     align-items: center;
+  }
+  .trayectoria-container .izquierda,
+  .trayectoria-container .centro,
+  .trayectoria-container .derecha {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
   .marco-container {
     width: 50%;
@@ -227,3 +263,9 @@ main {
     max-width: 90%;
     padding: 0 5px;
   }
+}
+
+@media (max-width: 600px) {
+  .marco { width: 200px; }
+  .perfil { width: 150px; }
+}
