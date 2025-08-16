@@ -42,8 +42,8 @@ body {
   top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(120px, 18vw, 260px);
-  max-width: 320px;
+  /* Nunca más pequeño que 110px, ideal 14vw, nunca más grande que 260px */
+  width: clamp(150px, 14vw, 20px);
   transition: all 320ms ease;
   z-index: 10;
   pointer-events: auto;
@@ -54,7 +54,8 @@ body {
   top: 10px;
   left: 12px;
   transform: none;
-  width: clamp(56px, 8vw, 140px);
+  /* Nunca más pequeño que 64px, ideal 9vw, nunca más grande que 140px */
+  width: clamp(64px, 9vw, 140px);
   z-index: 99999;
 }
 
