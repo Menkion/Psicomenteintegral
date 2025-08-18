@@ -43,7 +43,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   /* Nunca más pequeño que 110px, ideal 14vw, nunca más grande que 260px */
-  width: clamp(150px, 14vw, 20px);
+  width: clamp(260px, 14vw, 20px);
   transition: all 320ms ease;
   z-index: 10;
   pointer-events: auto;
@@ -239,7 +239,7 @@ main {
   main {
     padding-top: calc(clamp(180px, 34vh, 340px) + 56px);
   }
-  #logo { width: clamp(90px, 28vw, 180px); }
+  #logo { width: clamp(260px, 28vw, 180px); }
   #logo.small { width: 72px; left: 10px; top: 8px; }
 
   .trayectoria-container {
@@ -253,8 +253,8 @@ main {
     max-width: 100%;
   }
   .marco-container {
-    width: 50%;
-    max-width: 180px;
+    width: 100%;
+    max-width: 200px;
   }
   .fondo-orden {
     width: 120px;
