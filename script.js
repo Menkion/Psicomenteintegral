@@ -6,6 +6,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.getElementById('logo');
   const perfil = document.getElementById('perfil');
   const orden = document.getElementById('orden');
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+  const buttons = document.querySelectorAll(".tab-button");
+  const contents = document.querySelectorAll(".tab-content");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Quitar "active" de todos los botones
+      buttons.forEach(btn => btn.classList.remove("active"));
+      // Quitar "active" de todo el contenido
+      contents.forEach(content => content.classList.remove("active"));
+
+      // Activar el botón clickeado
+      button.classList.add("active");
+      // Mostrar el contenido correspondiente
+      const tabId = button.getAttribute("data-tab");
+      document.getElementById(tabId).classList.add("active");
+    });
+  tabButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    // Quitar clase "active" de todo
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+    tabContents.forEach(content => content.classList.remove("active"));
+
+    // Activar el botón y el contenido correcto
+    button.classList.add("active");
+    const targetId = button.dataset.tab;
+    const targetContent = document.getElementById(targetId);
+    if (targetContent) {
+      targetContent.classList.add("active");
+    }
+  });
+});
 
   if (!banner || !nav || !logo) return;
 
@@ -169,5 +202,5 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: targetTop, behavior: 'smooth' });
     });
   });
-
-});
+})
+})

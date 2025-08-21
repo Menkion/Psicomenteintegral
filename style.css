@@ -197,31 +197,50 @@ main {
   margin-bottom: 1rem;
 }
 .tab-button {
-  background: #fff;
+  background: #ddd;
   border: 1px solid #ccc;
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 6px;
+  transition: background 0.3s;
 }
 .tab-button.active {
-  background: transparent;
+  background: #0077cc;
   color: rgba(132,87,255,0.95);
   border-color: rgba(132,87,255,0.12);
 }
 .tab-content {
   display: none;
+  opacity: 0;
   background: #fff;
   padding: 1rem;
   border-radius: 6px;
   max-width: 800px;
   margin: 0 auto;
+  transition: opacity 0.4s ease-in-out;
 }
-.tab-content.active { display: block; }
+.tab-content.active {
+  display: block;
+  opacity: 1;
+}
 
 /* Contacto/Horarios */
 #contacto, #horarios {
   padding: 2rem;
 }
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+.tab-button.active {
+  background-color: #4ca3af;
+  color: white;
+}
+
 
 /* ------------------ */
 /* RESPONSIVE */
